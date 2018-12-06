@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/MicroControlLab/LabUiWebsocket.svg?branch=master)](https://travis-ci.org/MicroControlLab/LabUiWebsocket)
-[![Coverage Status](https://coveralls.io/repos/github/MicroControlLab/LabUiWebsocket/badge.svg?branch=master)](https://coveralls.io/github/MicroControlLab/LabUiWebsocket?branch=master)
+[![Build Status](https://travis-ci.org/MicroControlLab/lab-ui-websocket.svg?branch=master)](https://travis-ci.org/MicroControlLab/lab-ui-websocket)
+[![Coverage Status](https://coveralls.io/repos/github/MicroControlLab/lab-ui-websocket/badge.svg?branch=master)](https://coveralls.io/github/MicroControlLab/lab-ui-websocket?branch=master)
 
 # LabUiWebsocket
 
