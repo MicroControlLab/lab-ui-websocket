@@ -1,0 +1,20 @@
+language: node_js
+
+sudo: false
+
+node_js:
+  - 6
+  - 8
+  - 10
+
+cache: npm
+
+script:
+  - npm run test:prod && npm run build
+after_success:
+  - npm run travis-deploy-once "npm run report-coverage"
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run travis-deploy-once "npm run deploy-docs"; fi
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run travis-deploy-once "npm run semantic-release"; fi
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
