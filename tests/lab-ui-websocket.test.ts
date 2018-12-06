@@ -208,7 +208,9 @@ describe('Testing LabUiWebsocket', () => {
 				wsClient.get_message_object(falsyMsgEvent)
 			}
 
-			expect(exception).toThrow("The recived message couldn't be parsed to JSON.")
+			expect(exception).toThrow(
+				new TypeError("The recived message couldn't be parsed to JSON.")
+			)
 		})
 		it('get_message_object of not string msg.data', () => {
 			const exception = () => {
@@ -218,24 +220,26 @@ describe('Testing LabUiWebsocket', () => {
 				wsClient.get_message_object(falsyMsgEvent)
 			}
 
-			expect(exception).toThrow("The recived message wasn't a string.")
+			expect(exception).toThrow(new TypeError("The recived message wasn't a string."))
 		})
 		it('send wront formated data', () => {
 			const exception = () => {
 				wsClient.send(<any>1)
 			}
-			const error_msg =
+			const errorMsg =
 				'The data to be sent need to be a string or an object of form ' +
 				'{"status": "control_status", "data":{...ui_settings} }'
 
-			expect(exception).toThrow(error_msg)
+			expect(exception).toThrow(new TypeError(errorMsg))
 		})
 		it('send before client is connect', () => {
 			const exception = () => {
 				wsClient.send('')
 			}
 
-			expect(exception).toThrow('INVALID_STATE_ERR : Pausing to reconnect websocket')
+			expect(exception).toThrow(
+				new Error('INVALID_STATE_ERR : Pausing to reconnect websocket')
+			)
 		})
 		it("message_logic wasn't overwritten", () => {
 			const exception = () => {

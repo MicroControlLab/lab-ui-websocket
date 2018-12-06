@@ -29,15 +29,14 @@
  * - David Doran
  */
 
-/** Object style to be sent with LabUiWebsocket.send()
- */
+/** Object style to be sent with LabUiWebsocket.send() */
 export interface SendData {
   status: string
   data?: object
 }
 
 export interface LabUiWebsocketSettings extends LabUiWebsocketOptions {
-  /** Protocolls to be used*/
+  /** Protocolls to be used */
   protocols: string[]
 }
 
@@ -45,10 +44,10 @@ export interface LabUiWebsocketOptions {
   /** Whether this instance should log debug messages. */
   debug?: boolean
 
-  /** Protocolls to be used*/
+  /** Protocolls to be used */
   protocols?: string[]
 
-  /** WebSocket Class to create the WebSocket, thsi is mainly to mock it for testing*/
+  /** WebSocket Class to create the WebSocket, thsi is mainly to mock it for testing */
   websocketClass?: typeof WebSocket
 
   /** Whether or not the websocket should attempt to connect immediately upon instantiation. */
@@ -74,7 +73,7 @@ export interface LabUiWebsocketOptions {
 export class LabUiWebsocket {
   private debugAll: boolean = false
 
-  //The underlying WebSocket
+  // The underlying WebSocket
   private ws: null | WebSocket = null
   private url: string
 
@@ -87,10 +86,13 @@ export class LabUiWebsocket {
   private protocols: string[]
   private forcedClose: boolean = false
   private timedOut: boolean = false
-
+  /* tslint:disable:no-empty */
   public onopen: (event: Event) => void = event => {}
+  /* tslint:disable:no-empty */
   public onclose: (event: Event) => void = event => {}
+  /* tslint:disable:no-empty */
   public onconnecting: () => void = () => {}
+  /* tslint:disable:no-empty */
   public onerror: (event: Event) => void = event => {}
 
   // Default settings
@@ -123,7 +125,7 @@ export class LabUiWebsocket {
     this.protocols = this.settings.protocols
 
     // Whether or not to create a websocket upon instantiation
-    if (this.settings.automaticOpen == true) {
+    if (this.settings.automaticOpen === true) {
       this.connect(false)
     }
   }
@@ -139,33 +141,33 @@ export class LabUiWebsocket {
   public get_message_object(event: MessageEvent): void | object {
     if (typeof event.data === 'string') {
       try {
-        let msg_object: object = JSON.parse(event.data)
-        this.log('LabUiWebsocket', msg_object)
-        return msg_object
+        let msgObject: object = JSON.parse(event.data)
+        this.log('LabUiWebsocket', msgObject)
+        return msgObject
       } catch (err) {
         this.log(err, 'Error parsing the message string: ', event.data)
-        throw "The recived message couldn't be parsed to JSON."
+        throw new TypeError("The recived message couldn't be parsed to JSON.")
       }
     } else {
       this.log("The server didn't pass a string: ", event.data)
-      throw "The recived message wasn't a string."
+      throw new TypeError("The recived message wasn't a string.")
     }
   }
 
   public onmessage(event: MessageEvent): void {
     this.log('the message event was ', event)
-    const msg_object: void | object = this.get_message_object(event)
+    const msgObject: void | object = this.get_message_object(event)
     this.log('the message object was ', event)
-    if (msg_object) {
-      this.message_logic(msg_object)
+    if (msgObject) {
+      this.message_logic(msgObject)
     }
   }
 
-  public message_logic(msg_object: object): void {
-    const error_msg =
+  public message_logic(msgObject: object): void {
+    const errorMsg =
       'The method `message_logic` should be overwritten and used to ' +
       'do all the business logic on recieved messages objects'
-    throw error_msg
+    throw errorMsg
   }
 
   public connect(reconnectAttempt: boolean): void {
@@ -178,8 +180,8 @@ export class LabUiWebsocket {
     this.onconnecting()
     this.log('LabUiWebsocket', 'attempt-connect', this.url)
 
-    var localWs = this.ws
-    var timeout = setTimeout(() => {
+    let localWs = this.ws
+    let timeout = setTimeout(() => {
       this.log('LabUiWebsocket', 'connection-timeout', this.url)
       this.timedOut = true
       localWs.close()
@@ -233,29 +235,30 @@ export class LabUiWebsocket {
    */
 
   public send(data: SendData | string): void {
-    let data_string: string
-    const errror_msg =
+    let dataString: string
+    const errrorMsg =
       'The data to be sent need to be a string or an object of form ' +
       '{"status": "control_status", "data":{...ui_settings} }'
     if (typeof data === 'object') {
-      data_string = JSON.stringify(data)
+      dataString = JSON.stringify(data)
+      /* tslint:disable:strict-type-predicates */
     } else if (typeof data === 'string') {
-      data_string = data
+      dataString = data
     } else {
-      throw errror_msg
+      throw new TypeError(errrorMsg)
     }
     if (this.ws) {
       this.log('LabUiWebsocket', 'send', this.url, data)
-      return this.ws.send(data_string)
+      return this.ws.send(dataString)
     } else {
-      throw 'INVALID_STATE_ERR : Pausing to reconnect websocket'
+      throw new Error('INVALID_STATE_ERR : Pausing to reconnect websocket')
     }
   }
 
   /**
    * Closes the WebSocket connection or connection attempt, if any.
    * If the connection is already CLOSED, this method does nothing.
-   *Returns boolean, whether websocket was FORCEFULLY closed.
+   * Returns boolean, whether websocket was FORCEFULLY closed.
    */
   public close(): boolean {
     if (this.ws) {

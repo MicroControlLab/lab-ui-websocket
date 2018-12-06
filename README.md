@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/MicroControlLab/lab-ui-websocket.svg?branch=master)](https://travis-ci.org/MicroControlLab/lab-ui-websocket)
 [![Coverage Status](https://coveralls.io/repos/github/MicroControlLab/lab-ui-websocket/badge.svg?branch=master)](https://coveralls.io/github/MicroControlLab/lab-ui-websocket?branch=master)
 
-# LabUiWebsocket
+# lab-ui-websocket
 
 Reconnecting WebSocket interface for [LabUI](https://github.com/MicroControlLab/LabUi), with specialliced methods to simplify the reneralized usage with the LabUi uiGenerator class.
 
