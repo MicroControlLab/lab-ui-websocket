@@ -1,27 +1,21 @@
 language: node_js
 
-jobs:
-  include:
-    - stage: tests
-      sudo: false
-      node_js:
-        - 6
-        - 8
-        - 10
-      cache: npm
-      script:
-        - npm run test:prod
+sudo: false
 
-    - stage: deploy
-      node_js: '10'
-      script:
-        - npm run report-coverage
-        - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run deploy-docs; fi
-        - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run semantic-release; fi
-      # deploy:
-      #   provider: npm
-      #   api_key: $NPM_API_KEY
-      #   on: deploy-npm-release
+node_js:
+  - 6
+  - 8
+  - 10
+
+cache: npm
+
+script:
+  - npm run test:prod
+
+after_success:
+  - npm run report-coverage
+  - if [ "$(node --version)" == v10.* && "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run deploy-docs; fi
+  - if [ "$(node --version)" == v10.* && "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run semantic-release; fi
 
 branches:
   except:
