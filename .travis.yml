@@ -13,6 +13,7 @@ script:
   - npm run test:prod
 
 after_success:
+  - npm run build
   - npm run report-coverage
   - |
     if [[ "$(node --version)" == v10.* && "$TRAVIS_BRANCH" = "master" && "$TRAVIS_PULL_REQUEST" = "false" ]]; then
