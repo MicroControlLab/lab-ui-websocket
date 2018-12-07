@@ -15,11 +15,11 @@ script:
 after_success:
   - npm run report-coverage
   - |
-    if [[ "$(node --version)" == v10.* && "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]]; then
+    if [[ "$(node --version)" == v10.* && "$TRAVIS_BRANCH" = "master" && "$TRAVIS_PULL_REQUEST" = "false" ]]; then
       npm run deploy-docs;
     fi
   - |
-    if [[ "$(node --version)" == v10.* && "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]]; then
+    if [[ "$(node --version)" == v10.* && "$TRAVIS_BRANCH" = "master" && "$TRAVIS_PULL_REQUEST" = "false" ]]; then
       npm run semantic-release;
     fi
 
