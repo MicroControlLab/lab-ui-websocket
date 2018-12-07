@@ -1,8 +1,8 @@
 {
   "name": "lab-ui-websocket",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
-  "keywords": [],
+  "keywords": ["typescript", "websocket", "reconnecting", "lab-ui", "MicroControlLab"],
   "main": "dist/lab-ui-websocket.umd.js",
   "module": "dist/lab-ui-websocket.es5.js",
   "typings": "dist/types/lab-ui-websocket.d.ts",
@@ -16,13 +16,12 @@
     "url": "https://github.com/MicroControlLab/lab-ui-websocket.git/issues"
   },
   "homepage": "https://github.com/MicroControlLab/lab-ui-websocket.git",
-  "keywords": ["typescript", "websocket", "reconnecting", "labui"],
   "license": "Apache License 2.0",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=6.0.0"
   },
   "scripts": {
-    "lint": "tslint --project tsconfig.json -t codeFrame ",
+    "lint": "tslint -t codeFrame 'src/**/*.{ts,tsx,js}' 'tests/**/*.{ts,tsx,js}'",
     "prebuild": "rimraf dist",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
     "start": "rollup -c rollup.config.ts -w",
@@ -35,8 +34,7 @@
     "commit": "git-cz",
     "semantic-release": "semantic-release",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
-    "precommit": "lint-staged",
-    "travis-deploy-once": "travis-deploy-once"
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": ["prettier --write", "git add"]
@@ -98,7 +96,6 @@
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-typescript2": "^0.18.0",
     "semantic-release": "^15.9.16",
-    "travis-deploy-once": "^5.0.9",
     "ts-jest": "^23.10.2",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",

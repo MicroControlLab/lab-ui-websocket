@@ -18,7 +18,7 @@ const getMockLabUiWebsocket = (
 	return wsClient
 }
 
-interface customMessageEvent extends Event {
+interface CustomMessageEvent extends Event {
 	data?: string
 }
 
@@ -118,11 +118,9 @@ describe('Testing LabUiWebsocket', () => {
 				})
 			})
 
-			// const message_object = {status: "test respone"}
-
 			const wsClient = getMockLabUiWebsocket(url)
 
-			const message_object = { status: 'test respone from string' }
+			const messageObject = { status: 'test respone from string' }
 
 			wsClient.onopen = (event: Event) => {
 				wsClient.send('{"status": "test respone from string"}')
@@ -133,7 +131,7 @@ describe('Testing LabUiWebsocket', () => {
 			}
 			setTimeout(() => {
 				expect(msgObjectArray.length).toBe(1)
-				expect(msgObjectArray).toEqual([message_object])
+				expect(msgObjectArray).toEqual([messageObject])
 				wsClient.close()
 				mockServer.stop(done)
 			}, 100)
@@ -150,12 +148,12 @@ describe('Testing LabUiWebsocket', () => {
 				})
 			})
 
-			const message_object = { status: 'test respone from SentData object' }
+			const messageObject = { status: 'test respone from SentData object' }
 
 			const wsClient = getMockLabUiWebsocket(url)
 
 			wsClient.onopen = (event: Event) => {
-				wsClient.send(message_object)
+				wsClient.send(messageObject)
 			}
 
 			wsClient.message_logic = (msg: object) => {
@@ -163,7 +161,7 @@ describe('Testing LabUiWebsocket', () => {
 			}
 			setTimeout(() => {
 				expect(msgObjectArray.length).toBe(1)
-				expect(msgObjectArray).toEqual([message_object])
+				expect(msgObjectArray).toEqual([messageObject])
 				wsClient.close()
 				mockServer.stop(done)
 			}, 100)
@@ -224,7 +222,7 @@ describe('Testing LabUiWebsocket', () => {
 		})
 		it('send wront formated data', () => {
 			const exception = () => {
-				wsClient.send(<any>1)
+				wsClient.send(1 as any)
 			}
 			const errorMsg =
 				'The data to be sent need to be a string or an object of form ' +
@@ -246,10 +244,10 @@ describe('Testing LabUiWebsocket', () => {
 				wsClient.message_logic({})
 			}
 
-			const error_msg =
+			const errorMsg =
 				'The method `message_logic` should be overwritten and used to ' +
 				'do all the business logic on recieved messages objects'
-			expect(exception).toThrow(error_msg)
+			expect(exception).toThrow(errorMsg)
 		})
 		it("message_logic wasn't overwritten", () => {
 			expect(wsClient.close()).toBe(false)
