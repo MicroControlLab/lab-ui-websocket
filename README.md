@@ -1,7 +1,10 @@
+[![npm latest version](https://img.shields.io/npm/v/lab-ui-websocket.svg)](https://www.npmjs.com/package/lab-ui-websocket)
 [![Build Status](https://travis-ci.org/MicroControlLab/lab-ui-websocket.svg?branch=master)](https://travis-ci.org/MicroControlLab/lab-ui-websocket)
-[![Coverage Status](https://coveralls.io/repos/github/MicroControlLab/lab-ui-websocket/badge.svg?branch=master)](https://coveralls.io/github/MicroControlLab/lab-ui-websocket?branch=master) 
+[![Coverage Status](https://coveralls.io/repos/github/MicroControlLab/lab-ui-websocket/badge.svg?branch=master)](https://coveralls.io/github/MicroControlLab/lab-ui-websocket?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/MicroControlLab/lab-ui-websocket.svg)](https://greenkeeper.io/)
 [![Documentation](https://img.shields.io/badge/docs-gh--pages-brightgreen.svg)](https://microcontrollab.github.io/lab-ui-websocket/index.html)
+
+[![NPM](https://nodei.co/npm/lab-ui-websocket.png)](https://npmjs.org/package/lab-ui-websocket)
 
 # lab-ui-websocket
 

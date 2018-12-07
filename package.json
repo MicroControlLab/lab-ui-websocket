@@ -1,6 +1,6 @@
 {
   "name": "lab-ui-websocket",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "keywords": ["typescript", "websocket", "reconnecting", "lab-ui", "MicroControlLab"],
   "main": "dist/lab-ui-websocket.umd.js",
