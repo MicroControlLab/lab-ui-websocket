@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/MicroControlLab/lab-ui-websocket.svg?branch=master)](https://travis-ci.org/MicroControlLab/lab-ui-websocket)
 [![Coverage Status](https://coveralls.io/repos/github/MicroControlLab/lab-ui-websocket/badge.svg?branch=master)](https://coveralls.io/github/MicroControlLab/lab-ui-websocket?branch=master)
+[![Documentation](https://img.shields.io/badge/docs-gh--pages-brightgreen.svg)](https://microcontrollab.github.io/lab-ui-websocket/index.html)
 
 # lab-ui-websocket
 
