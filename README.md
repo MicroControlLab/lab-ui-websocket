@@ -1,6 +1,7 @@
 [![npm latest version](https://img.shields.io/npm/v/lab-ui-websocket.svg)](https://www.npmjs.com/package/lab-ui-websocket)
 [![Build Status](https://travis-ci.org/MicroControlLab/lab-ui-websocket.svg?branch=master)](https://travis-ci.org/MicroControlLab/lab-ui-websocket)
 [![Coverage Status](https://coveralls.io/repos/github/MicroControlLab/lab-ui-websocket/badge.svg?branch=master)](https://coveralls.io/github/MicroControlLab/lab-ui-websocket?branch=master)
+[![Apache 2.0 licensed](https://img.shields.io/hexpm/l/plug.svg)](https://raw.githubusercontent.com/MicroControlLab/lab-ui-websocket/master/LICENSE)
 [![Greenkeeper badge](https://badges.greenkeeper.io/MicroControlLab/lab-ui-websocket.svg)](https://greenkeeper.io/)
 [![Documentation](https://img.shields.io/badge/docs-gh--pages-brightgreen.svg)](https://microcontrollab.github.io/lab-ui-websocket/index.html)
 
@@ -8,7 +9,7 @@
 
 # lab-ui-websocket
 
-Reconnecting WebSocket interface for [LabUI](https://github.com/MicroControlLab/LabUi), with specialliced methods to simplify the reneralized usage with the LabUi uiGenerator class.
+Reconnecting WebSocket interface for [LabUI](https://github.com/MicroControlLab/lab-ui), with specialliced methods to simplify the generalized usage with the LabUi uiGenerator class.
 
 ## Development
 
