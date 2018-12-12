@@ -1,21 +1,29 @@
 {
-  "name": "lab-ui-websocket",
+  "name": "lab-gui-websocket",
   "version": "1.0.0",
   "description": "",
-  "keywords": ["typescript", "websocket", "reconnecting", "lab-ui", "MicroControlLab"],
-  "main": "dist/lab-ui-websocket.umd.js",
-  "module": "dist/lab-ui-websocket.es5.js",
-  "typings": "dist/types/lab-ui-websocket.d.ts",
-  "files": ["dist"],
+  "keywords": [
+    "typescript",
+    "websocket",
+    "reconnecting",
+    "lab-ui",
+    "MicroControlLab"
+  ],
+  "main": "dist/lab-gui-websocket.umd.js",
+  "module": "dist/lab-gui-websocket.es5.js",
+  "typings": "dist/types/lab-gui-websocket.d.ts",
+  "files": [
+    "dist"
+  ],
   "author": "Sebastian Weigand <s.weigand.phy@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MicroControlLab/lab-ui-websocket.git"
+    "url": "https://github.com/MicroControlLab/lab-gui-websocket.git"
   },
   "bugs": {
-    "url": "https://github.com/MicroControlLab/lab-ui-websocket.git/issues"
+    "url": "https://github.com/MicroControlLab/lab-gui-websocket.git/issues"
   },
-  "homepage": "https://github.com/MicroControlLab/lab-ui-websocket.git",
+  "homepage": "https://github.com/MicroControlLab/lab-gui-websocket.git",
   "license": "Apache License 2.0",
   "engines": {
     "node": ">=6.0.0"
@@ -37,7 +45,10 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "{src,test}/**/*.ts": ["prettier --write", "git add"]
+    "{src,test}/**/*.ts": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "config": {
     "commitizen": {
@@ -50,8 +61,15 @@
     },
     "testEnvironment": "node",
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": ["ts", "tsx", "js"],
-    "coveragePathIgnorePatterns": ["/node_modules/", "/test/"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 85,
@@ -60,14 +78,18 @@
         "statements": 90
       }
     },
-    "collectCoverageFrom": ["src/*.{js,ts}"]
+    "collectCoverageFrom": [
+      "src/*.{js,ts}"
+    ]
   },
   "prettier": {
     "semi": false,
     "singleQuote": true
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",

@@ -6,7 +6,7 @@
  * It is API compatible, so when you have:
  *   ws = new WebSocket('ws://....');
  * you can replace with:
- *   ws = new LabUiWebsocketSettings('ws://....');
+ *   ws = new LabGuiWebsocketSettings('ws://....');
  *
  * The event stream will typically look like:
  *  onconnecting
@@ -29,18 +29,18 @@
  * - David Doran
  */
 
-/** Object style to be sent with LabUiWebsocket.send() */
+/** Object style to be sent with LabGuiWebsocket.send() */
 export interface SendData {
   status: string
   data?: object
 }
 
-export interface LabUiWebsocketSettings extends LabUiWebsocketOptions {
+export interface LabGuiWebsocketSettings extends LabGuiWebsocketOptions {
   /** Protocolls to be used */
   protocols: string[]
 }
 
-export interface LabUiWebsocketOptions {
+export interface LabGuiWebsocketOptions {
   /** Whether this instance should log debug messages. */
   debug?: boolean
 
@@ -70,7 +70,7 @@ export interface LabUiWebsocketOptions {
   binaryType?: 'blob' | 'arraybuffer'
 }
 
-export class LabUiWebsocket {
+export class LabGuiWebsocket {
   private debugAll: boolean = false
 
   // The underlying WebSocket
@@ -96,7 +96,7 @@ export class LabUiWebsocket {
   public onerror: (event: Event) => void = event => {}
 
   // Default settings
-  settings: LabUiWebsocketSettings = {
+  settings: LabGuiWebsocketSettings = {
     debug: false,
     protocols: [],
     automaticOpen: true,
@@ -108,7 +108,7 @@ export class LabUiWebsocket {
     binaryType: 'blob'
   }
 
-  constructor(url: string, options: LabUiWebsocketOptions = {}) {
+  constructor(url: string, options: LabGuiWebsocketOptions = {}) {
     // Overwrite and define settings with options if they exist.
     this.settings = { ...this.settings, ...options }
     /** The number of attempted reconnects since starting, or the last successful connection. Read only. */
@@ -142,7 +142,7 @@ export class LabUiWebsocket {
     if (typeof event.data === 'string') {
       try {
         let msgObject: object = JSON.parse(event.data)
-        this.log('LabUiWebsocket', msgObject)
+        this.log('LabGuiWebsocket', msgObject)
         return msgObject
       } catch (err) {
         this.log(err, 'Error parsing the message string: ', event.data)
@@ -178,11 +178,11 @@ export class LabUiWebsocket {
     }
 
     this.onconnecting()
-    this.log('LabUiWebsocket', 'attempt-connect', this.url)
+    this.log('LabGuiWebsocket', 'attempt-connect', this.url)
 
     let localWs = this.ws
     let timeout = setTimeout(() => {
-      this.log('LabUiWebsocket', 'connection-timeout', this.url)
+      this.log('LabGuiWebsocket', 'connection-timeout', this.url)
       this.timedOut = true
       localWs.close()
       this.timedOut = false
@@ -193,7 +193,7 @@ export class LabUiWebsocket {
       // { target: WebSocket }
     ) => {
       clearTimeout(timeout)
-      this.log('LabUiWebsocket', 'onopen', this.url)
+      this.log('LabGuiWebsocket', 'onopen', this.url)
       this.readyState = WebSocket.OPEN
       reconnectAttempt = false
       this.onopen(event)
@@ -209,7 +209,7 @@ export class LabUiWebsocket {
         this.readyState = WebSocket.CONNECTING
         this.onconnecting()
         if (!reconnectAttempt && !this.timedOut) {
-          this.log('LabUiWebsocket', 'onclose', this.url)
+          this.log('LabGuiWebsocket', 'onclose', this.url)
           this.onclose(event)
         }
         setTimeout(() => {
@@ -219,11 +219,11 @@ export class LabUiWebsocket {
     }
 
     this.ws.onmessage = (event: MessageEvent): void => {
-      this.log('LabUiWebsocket', 'onmessage', this.url, event.data)
+      this.log('LabGuiWebsocket', 'onmessage', this.url, event.data)
       this.onmessage(event)
     }
     this.ws.onerror = (event: Event): void => {
-      this.log('LabUiWebsocket', 'onerror', this.url, event)
+      this.log('LabGuiWebsocket', 'onerror', this.url, event)
       this.onerror(event)
     }
   }
@@ -248,7 +248,7 @@ export class LabUiWebsocket {
       throw new TypeError(errrorMsg)
     }
     if (this.ws) {
-      this.log('LabUiWebsocket', 'send', this.url, data)
+      this.log('LabGuiWebsocket', 'send', this.url, data)
       return this.ws.send(dataString)
     } else {
       throw new Error('INVALID_STATE_ERR : Pausing to reconnect websocket')

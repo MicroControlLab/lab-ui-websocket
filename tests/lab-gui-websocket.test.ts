@@ -3,14 +3,14 @@
  */
 
 import { WebSocket as mockWebSocket, Server, CloseOptions } from 'mock-socket'
-import { LabUiWebsocket, LabUiWebsocketOptions, SendData } from '../src/lab-ui-websocket'
+import { LabGuiWebsocket, LabGuiWebsocketOptions, SendData } from '../src/lab-gui-websocket'
 
-const getMockLabUiWebsocket = (
+const getMockLabGuiWebsocket = (
 	url: string,
 	debug: boolean = false,
-	options?: LabUiWebsocketOptions
-): LabUiWebsocket => {
-	const wsClient = new LabUiWebsocket(url, {
+	options?: LabGuiWebsocketOptions
+): LabGuiWebsocket => {
+	const wsClient = new LabGuiWebsocket(url, {
 		debug,
 		websocketClass: mockWebSocket,
 		...options
@@ -31,7 +31,7 @@ const getDelay = (time: number): Promise<{}> => {
 	return delay
 }
 
-describe('Testing LabUiWebsocket', () => {
+describe('Testing LabGuiWebsocket', () => {
 	const url: string = 'ws://localhost:8080'
 	// the diffentiation between object and string array is needed to to
 	// a problem with  call signatures of union types
@@ -40,12 +40,12 @@ describe('Testing LabUiWebsocket', () => {
 	let msgObjectArray: object[]
 
 	describe('imports and implementations', () => {
-		it('LabUiWebsocket class exists with that name', () => {
-			expect(LabUiWebsocket).toBeDefined()
+		it('LabGuiWebsocket class exists with that name', () => {
+			expect(LabGuiWebsocket).toBeDefined()
 		})
 
-		it('WebSocket of LabUiWebsocket is mocked properly', () => {
-			const wsClient = getMockLabUiWebsocket(url)
+		it('WebSocket of LabGuiWebsocket is mocked properly', () => {
+			const wsClient = getMockLabGuiWebsocket(url)
 			expect(wsClient.wsInstance).toBeInstanceOf(mockWebSocket)
 		})
 	})
@@ -63,7 +63,7 @@ describe('Testing LabUiWebsocket', () => {
 				socket.send('connected')
 			})
 
-			const wsClient = getMockLabUiWebsocket(url)
+			const wsClient = getMockLabGuiWebsocket(url)
 
 			wsClient.onmessage = (msg: MessageEvent) => {
 				msgStringArray.push(msg.data)
@@ -89,7 +89,7 @@ describe('Testing LabUiWebsocket', () => {
 				})
 			})
 
-			const wsClient = getMockLabUiWebsocket(url)
+			const wsClient = getMockLabGuiWebsocket(url)
 
 			wsClient.onopen = (event: Event) => {
 				wsClient.send('onopen response from client')
@@ -118,7 +118,7 @@ describe('Testing LabUiWebsocket', () => {
 				})
 			})
 
-			const wsClient = getMockLabUiWebsocket(url)
+			const wsClient = getMockLabGuiWebsocket(url)
 
 			const messageObject = { status: 'test respone from string' }
 
@@ -150,7 +150,7 @@ describe('Testing LabUiWebsocket', () => {
 
 			const messageObject = { status: 'test respone from SentData object' }
 
-			const wsClient = getMockLabUiWebsocket(url)
+			const wsClient = getMockLabGuiWebsocket(url)
 
 			wsClient.onopen = (event: Event) => {
 				wsClient.send(messageObject)
@@ -175,7 +175,7 @@ describe('Testing LabUiWebsocket', () => {
 
 		it('wait 3sec to create server and let the client autoconnect', done => {
 			let mockServer: Server
-			const wsClient = getMockLabUiWebsocket(url)
+			const wsClient = getMockLabGuiWebsocket(url)
 
 			wsClient.onopen = (event: Event) => {
 				msgStringArray.push('connected')
@@ -195,7 +195,7 @@ describe('Testing LabUiWebsocket', () => {
 		})
 	})
 	describe('Wanted exceptions', () => {
-		const wsClient = getMockLabUiWebsocket(url, false, {
+		const wsClient = getMockLabGuiWebsocket(url, false, {
 			automaticOpen: false
 		})
 		it('get_message_object of not a JSON parsable string msg.data', () => {
@@ -252,6 +252,5 @@ describe('Testing LabUiWebsocket', () => {
 		it("message_logic wasn't overwritten", () => {
 			expect(wsClient.close()).toBe(false)
 		})
-		// end exception testing
 	})
 })
