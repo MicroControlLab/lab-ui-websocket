@@ -71,8 +71,6 @@ export interface LabGuiWebsocketOptions {
 }
 
 export class LabGuiWebsocket {
-  private debugAll: boolean = false
-
   // The underlying WebSocket
   private ws: null | WebSocket = null
   private url: string
@@ -114,7 +112,9 @@ export class LabGuiWebsocket {
     /** The number of attempted reconnects since starting, or the last successful connection. Read only. */
     this.reconnectAttempts = 0
 
+    /** url of the WebSocket server. */
     this.url = url
+    /** Connection state of the WebSocket connection. */
     this.readyState = WebSocket.CONNECTING
 
     /**
@@ -130,39 +130,56 @@ export class LabGuiWebsocket {
     }
   }
 
+  /**
+   * Returns the used WebSocket instance and is only used for testing
+   */
   public get wsInstance() {
     return this.ws
   }
 
+  /**
+   * Returns the current readyState and is only used for testing
+   */
   public get connectionState() {
     return this.readyState
   }
 
-  public get_message_object(event: MessageEvent): void | object {
-    if (typeof event.data === 'string') {
+  /**
+   * Takes the response from the Server (which is expected to be a JSON sting)
+   * and return the object repressentation of that data.
+   */
+  public get_message_object(response: MessageEvent): object {
+    if (typeof response.data === 'string') {
       try {
-        let msgObject: object = JSON.parse(event.data)
-        this.log('LabGuiWebsocket', msgObject)
+        let msgObject: object = JSON.parse(response.data)
+        this.log('LabGuiWebsocket resolved message to msgObject: ', msgObject)
         return msgObject
       } catch (err) {
-        this.log(err, 'Error parsing the message string: ', event.data)
+        this.log(err, 'Error parsing the message string: ', response.data)
         throw new TypeError("The recived message couldn't be parsed to JSON.")
       }
     } else {
-      this.log("The server didn't pass a string: ", event.data)
+      this.log("The server didn't pass a string: ", response.data)
       throw new TypeError("The recived message wasn't a string.")
     }
   }
 
-  public onmessage(event: MessageEvent): void {
-    this.log('the message event was ', event)
-    const msgObject: void | object = this.get_message_object(event)
-    this.log('the message object was ', event)
-    if (msgObject) {
-      this.message_logic(msgObject)
-    }
+  /**
+   * Action to be triggered when the Server send data to the client.
+   * The sent data is expected to be a JSON sting. The object generated from
+   * that response is than passed to `message_logic` which is supposed to be
+   * overwritten and do all the business logic.
+   */
+  public onmessage(response: MessageEvent): void {
+    this.log('the message event was ', response)
+    const msgObject: object = this.get_message_object(response)
+    this.log('the message object was ', response)
+    this.message_logic(msgObject)
   }
 
+  /**
+   * Dummy method which is supposed to be overwritten
+   */
   public message_logic(msgObject: object): void {
     const errorMsg =
       'The method `message_logic` should be overwritten and used to ' +
@@ -170,6 +187,13 @@ export class LabGuiWebsocket {
     throw errorMsg
   }
 
+  /**
+   * Connects the WebSocket to the Server at the given url.
+   * This method get automatically executed at instance creation,
+   * if automaticOpen=false is passes with the settings.
+   *
+   * @param reconnectAttempt: boolean weather or not this is a reconnection attempt
+   */
   public connect(reconnectAttempt: boolean): void {
     if (this.settings.websocketClass) {
       this.ws = new this.settings.websocketClass(this.url, this.protocols)
@@ -188,10 +212,7 @@ export class LabGuiWebsocket {
       this.timedOut = false
     }, this.settings.timeoutInterval)
 
-    this.ws.onopen = (
-      event: Event
-      // { target: WebSocket }
-    ) => {
+    this.ws.onopen = (event: Event) => {
       clearTimeout(timeout)
       this.log('LabGuiWebsocket', 'onopen', this.url)
       this.readyState = WebSocket.OPEN
@@ -269,8 +290,13 @@ export class LabGuiWebsocket {
     return false
   }
 
+  /**
+   * Private logging method which only logs if the
+   * setting 'debug' is set to true
+   */
+
   private log(...args: any[]): void {
-    if (this.settings.debug || this.debugAll) {
+    if (this.settings.debug) {
       console.log(...args)
     }
   }
