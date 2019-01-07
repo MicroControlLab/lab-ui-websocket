@@ -202,8 +202,8 @@ describe('Testing LabGuiWebsocket', () => {
     it('wait for connection to time out', done => {
       // timeout only gets called because it isn't reset by clearTimeout, which is why it needs to be mocked
       jest.useFakeTimers()
-      const spyLog = jest.spyOn(global.console, 'log').mockImplementation(() => {})
-      const spyClear = jest.spyOn(global, 'clearTimeout').mockImplementation(() => {})
+      const spyLog = jest.spyOn(global.console, 'log').mockImplementation()
+      const spyClear = jest.spyOn(global, 'clearTimeout').mockImplementation()
       let mockServer = new Server(url)
       const wsClient = getMockLabGuiWebsocket(url, true, {
         timeoutInterval: 10
@@ -284,7 +284,7 @@ describe('Testing LabGuiWebsocket', () => {
 
     it('logging if debug is activated', () => {
       const debugClient = getMockLabGuiWebsocket(url, true, { automaticOpen: false })
-      const spy = jest.spyOn(global.console, 'log').mockImplementation(() => {})
+      const spy = jest.spyOn(global.console, 'log').mockImplementation()
       const message = new MessageEvent('test', { data: '{ "test": 1 }' })
       debugClient.get_message_object(message)
       expect(spy).toHaveBeenCalled()
