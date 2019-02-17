@@ -186,17 +186,19 @@ describe('Testing LabGuiWebsocket', () => {
         msgStringArray.push('connected')
       }
       const delay = getDelay(3000)
-      delay.then(() => {
-        expect(wsClient.connectionState).toBe(WebSocket.CONNECTING)
-        mockServer = new Server(url)
-        setTimeout(() => {
-          expect(wsClient.connectionState).toBe(WebSocket.OPEN)
-          expect(msgStringArray.length).toBe(1)
-          expect(msgStringArray[0]).toBe('connected')
-          wsClient.close()
-          mockServer.stop(done)
-        }, 100)
-      })
+      delay
+        .then(() => {
+          expect(wsClient.connectionState).toBe(WebSocket.CONNECTING)
+          mockServer = new Server(url)
+          setTimeout(() => {
+            expect(wsClient.connectionState).toBe(WebSocket.OPEN)
+            expect(msgStringArray.length).toBe(1)
+            expect(msgStringArray[0]).toBe('connected')
+            wsClient.close()
+            mockServer.stop(done)
+          }, 100)
+        })
+        .catch(() => 'just for linting')
     })
 
     it('wait for connection to time out', done => {
