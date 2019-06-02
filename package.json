@@ -70,8 +70,8 @@
     "extends": ["@commitlint/config-conventional"]
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^8.0.0",
     "@commitlint/cli": "^8.0.0",
-    "@commitlint/config-conventional": "^7.1.2",
     "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
     "colors": "^1.3.2",
