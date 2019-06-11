@@ -2,11 +2,19 @@
   "name": "lab-gui-websocket",
   "version": "0.0.1",
   "description": "",
-  "keywords": ["typescript", "websocket", "reconnecting", "lab-ui", "MicroControlLab"],
+  "keywords": [
+    "typescript",
+    "websocket",
+    "reconnecting",
+    "lab-ui",
+    "MicroControlLab"
+  ],
   "main": "dist/lab-gui-websocket.umd.js",
   "module": "dist/lab-gui-websocket.es5.js",
   "typings": "dist/types/lab-gui-websocket.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "author": "Sebastian Weigand <s.weigand.phy@gmail.com>",
   "repository": {
     "type": "git",
@@ -37,7 +45,10 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "{src,test}/**/*.ts": ["prettier --write", "git add"]
+    "{src,test}/**/*.ts": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "config": {
     "commitizen": {
@@ -50,8 +61,15 @@
     },
     "testEnvironment": "jsdom",
     "testRegex": "(/tests/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": ["ts", "tsx", "js"],
-    "coveragePathIgnorePatterns": ["/node_modules/", "/test/"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 85,
@@ -60,18 +78,22 @@
         "statements": 90
       }
     },
-    "collectCoverageFrom": ["src/*.{js,ts}"]
+    "collectCoverageFrom": [
+      "src/*.{js,ts}"
+    ]
   },
   "prettier": {
     "semi": false,
     "singleQuote": true
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^8.0.0",
     "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
     "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
     "colors": "^1.3.2",
@@ -80,8 +102,8 @@
     "cross-env": "^5.2.0",
     "cz-conventional-changelog": "^2.1.0",
     "husky": "^2.0.0",
-    "jest": "^23.6.0",
-    "jest-config": "^23.6.0",
+    "jest": "^24.0.0",
+    "jest-config": "^24.8.0",
     "lint-staged": "^8.0.0",
     "lodash.camelcase": "^4.3.0",
     "mock-socket": "^8.0.5",
@@ -95,7 +117,7 @@
     "rollup-plugin-node-resolve": "^5.0.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-typescript2": "^0.21.0",
-    "semantic-release": "^15.9.16",
+    "semantic-release": "^15.13.16",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.3",
     "tslint": "^5.11.0",

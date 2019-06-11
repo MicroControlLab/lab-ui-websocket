@@ -23,7 +23,7 @@ interface CustomMessageEvent extends Event {
 }
 
 const getDelay = (time: number): Promise<{}> => {
-  const delay = new Promise(function(resolve, reject) {
+  const delay = new Promise<{}>(function(resolve, reject) {
     setTimeout(function() {
       resolve('foo')
     }, time)
