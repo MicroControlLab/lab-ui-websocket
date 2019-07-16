@@ -202,7 +202,8 @@ describe('Testing LabGuiWebsocket', () => {
     })
 
     it('wait for connection to time out', done => {
-      // timeout only gets called because it isn't reset by clearTimeout, which is why it needs to be mocked
+      // timeout only gets called because it isn't reset by clearTimeout,
+      // which is why clearTimeout needs to be mocked
       jest.useFakeTimers()
       const spyLog = jest.spyOn(global.console, 'log').mockImplementation()
       const spyClear = jest.spyOn(global, 'clearTimeout').mockImplementation()
