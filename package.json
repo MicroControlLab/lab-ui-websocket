@@ -105,7 +105,7 @@
     "jest-config": "^24.8.0",
     "lint-staged": "^9.0.0",
     "lodash.camelcase": "^4.3.0",
-    "mock-socket": "^8.0.5",
+    "mock-socket": "^9.0.0",
     "prettier": "^1.14.3",
     "prompt": "^1.0.0",
     "replace-in-file": "^4.0.0",
