@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/MicroControlLab/lab-gui-websocket/badge.svg?branch=master)](https://coveralls.io/github/MicroControlLab/lab-gui-websocket?branch=master)
 [![Apache 2.0 licensed](https://img.shields.io/hexpm/l/plug.svg)](https://raw.githubusercontent.com/MicroControlLab/lab-gui-websocket/master/LICENSE)
 [![Dev Dependencies](https://david-dm.org/MicroControlLab/lab-gui-websocket/dev-status.svg)](https://david-dm.org/MicroControlLab/lab-gui-websocket?type=dev)
-[![Greenkeeper badge](https://badges.greenkeeper.io/MicroControlLab/lab-gui-websocket.svg)](https://greenkeeper.io/)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=MicroControlLab/lab-gui-websocket)](https://dependabot.com)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Documentation](https://img.shields.io/badge/docs-gh--pages-brightgreen.svg)](https://microcontrollab.github.io/lab-gui-websocket/index.html)
 
