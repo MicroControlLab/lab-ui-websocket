@@ -1,6 +1,6 @@
 [![npm latest version](https://img.shields.io/npm/v/lab-gui-websocket.svg)](https://www.npmjs.com/package/lab-gui-websocket)
 [![Build Status](https://travis-ci.org/MicroControlLab/lab-gui-websocket.svg?branch=master)](https://travis-ci.org/MicroControlLab/lab-gui-websocket)
-[![Coverage Status](https://coveralls.io/repos/github/MicroControlLab/lab-gui-websocket/badge.svg?branch=master)](https://coveralls.io/github/MicroControlLab/lab-gui-websocket?branch=master)
+[![codecov](https://codecov.io/gh/MicroControlLab/lab-gui-websocket/branch/master/graph/badge.svg?token=gQ4aobVaRI)](https://codecov.io/gh/MicroControlLab/lab-gui-websocket)
 [![Apache 2.0 licensed](https://img.shields.io/hexpm/l/plug.svg)](https://raw.githubusercontent.com/MicroControlLab/lab-gui-websocket/master/LICENSE)
 [![Dev Dependencies](https://david-dm.org/MicroControlLab/lab-gui-websocket/dev-status.svg)](https://david-dm.org/MicroControlLab/lab-gui-websocket?type=dev)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=MicroControlLab/lab-gui-websocket)](https://dependabot.com)
