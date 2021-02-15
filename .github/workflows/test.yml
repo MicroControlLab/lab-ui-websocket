@@ -41,7 +41,7 @@ jobs:
       - name: Build package
         run: npm run build
       - name: Upload docs
-        uses: crazy-max/ghaction-github-pages@v1
+        uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
           build_dir: docs
